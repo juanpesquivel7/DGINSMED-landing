@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
 
 const CLIENTS = [
   { name: "Biosidus", src: "/clients/biosidus.png" },
@@ -7,11 +10,12 @@ const CLIENTS = [
 ];
 
 export function Clients() {
+  const { t } = useLanguage();
   return (
     <section className="border-t border-border bg-navy-900">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-foreground/50">
-          Confían en nosotros
+          {t("confiaEnNosotros")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-10">
           {CLIENTS.map((client) => (

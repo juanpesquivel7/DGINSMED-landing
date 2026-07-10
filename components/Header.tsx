@@ -4,18 +4,20 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
+import { useLanguage } from "@/lib/language-context";
 import { ArFlag, GbFlag, BrFlag } from "@/components/Flags";
+import type { Locale } from "@/lib/translations";
 
-const LANGUAGES = [
+const LANGUAGES: { code: Locale; Flag: typeof ArFlag; label: string }[] = [
   { code: "es", Flag: ArFlag, label: "ES" },
   { code: "en", Flag: GbFlag, label: "EN" },
   { code: "pt", Flag: BrFlag, label: "PT" },
-] as const;
+];
 
 export function Header() {
   const { totalItems, setIsOpen } = useCart();
+  const { locale, setLocale, t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState<(typeof LANGUAGES)[number]["code"]>("es");
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-navy-950/95 backdrop-blur">
@@ -26,13 +28,13 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 sm:flex">
           <Link href="/" className="hover:text-brand-400">
-            Inicio
+            {t("navHome")}
           </Link>
           <Link href="/productos" className="hover:text-brand-400">
-            Productos
+            {t("navProducts")}
           </Link>
           <Link href="/rastreo" className="hover:text-brand-400">
-            Rastreo de pedido
+            {t("navTracking")}
           </Link>
         </nav>
 
@@ -41,10 +43,10 @@ export function Header() {
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
-                onClick={() => setLang(l.code)}
+                onClick={() => setLocale(l.code)}
                 title={l.label}
                 className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold transition-colors ${
-                  lang === l.code
+                  locale === l.code
                     ? "bg-brand-500 text-brand-950"
                     : "text-foreground/60 hover:text-foreground"
                 }`}
@@ -59,7 +61,7 @@ export function Header() {
             onClick={() => setIsOpen(true)}
             className="relative flex items-center gap-2 rounded-full bg-action-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-action-600"
           >
-            Carrito
+            {t("cart")}
             {totalItems > 0 && (
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-semibold text-action-600">
                 {totalItems}
@@ -84,29 +86,29 @@ export function Header() {
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-2 py-2 hover:bg-white/5 hover:text-brand-400"
           >
-            Inicio
+            {t("navHome")}
           </Link>
           <Link
             href="/productos"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-2 py-2 hover:bg-white/5 hover:text-brand-400"
           >
-            Productos
+            {t("navProducts")}
           </Link>
           <Link
             href="/rastreo"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-2 py-2 hover:bg-white/5 hover:text-brand-400"
           >
-            Rastreo de pedido
+            {t("navTracking")}
           </Link>
           <div className="mt-2 flex items-center gap-1">
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
-                onClick={() => setLang(l.code)}
+                onClick={() => setLocale(l.code)}
                 className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${
-                  lang === l.code
+                  locale === l.code
                     ? "bg-brand-500 text-brand-950"
                     : "bg-navy-900 text-foreground/60"
                 }`}

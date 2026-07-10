@@ -3,34 +3,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
+import { useLanguage } from "@/lib/language-context";
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal } =
     useCart();
+  const { t } = useLanguage();
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <button
-        aria-label="Cerrar carrito"
+        aria-label={t("cartClose")}
         onClick={() => setIsOpen(false)}
         className="absolute inset-0 bg-black/60"
       />
       <div className="relative flex h-full w-full max-w-md flex-col bg-navy-900 text-foreground shadow-xl">
         <div className="flex items-center justify-between border-b border-border px-6 py-4">
-          <h2 className="text-lg font-semibold">Tu carrito</h2>
+          <h2 className="text-lg font-semibold">{t("cartTitle")}</h2>
           <button
             onClick={() => setIsOpen(false)}
             className="text-sm text-foreground/60 hover:text-foreground"
           >
-            Cerrar
+            {t("cartClose")}
           </button>
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
-            <p className="text-sm text-foreground/60">Tu carrito está vacío.</p>
+            <p className="text-sm text-foreground/60">{t("cartEmpty")}</p>
           ) : (
             <ul className="flex flex-col gap-4">
               {items.map((item) => (
@@ -69,7 +71,7 @@ export function CartDrawer() {
                         onClick={() => removeItem(item.product.slug)}
                         className="text-xs text-red-400 hover:underline"
                       >
-                        Quitar
+                        {t("cartRemove")}
                       </button>
                     </div>
                   </div>
@@ -81,7 +83,7 @@ export function CartDrawer() {
 
         <div className="border-t border-border px-6 py-4">
           <div className="mb-4 flex items-center justify-between text-sm font-semibold">
-            <span>Subtotal</span>
+            <span>{t("cartSubtotal")}</span>
             <span>${subtotal.toLocaleString("es-AR")} ARS</span>
           </div>
           <Link
@@ -93,7 +95,7 @@ export function CartDrawer() {
                 : "bg-action-500 hover:bg-action-600"
             }`}
           >
-            Ir a checkout
+            {t("cartGoToCheckout")}
           </Link>
         </div>
       </div>

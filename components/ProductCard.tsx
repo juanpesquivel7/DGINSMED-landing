@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@/types/product";
 import { useCart } from "@/lib/cart-context";
+import { useLanguage } from "@/lib/language-context";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const { t } = useLanguage();
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -45,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
             <button
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               className="px-3 py-1 text-sm text-card-foreground/70 hover:bg-white/5"
-              aria-label="Restar"
+              aria-label={t("subtract")}
             >
               −
             </button>
@@ -53,7 +55,7 @@ export function ProductCard({ product }: { product: Product }) {
             <button
               onClick={() => setQuantity((q) => q + 1)}
               className="px-3 py-1 text-sm text-card-foreground/70 hover:bg-white/5"
-              aria-label="Sumar"
+              aria-label={t("add")}
             >
               +
             </button>
@@ -62,7 +64,7 @@ export function ProductCard({ product }: { product: Product }) {
             onClick={() => addItem(product, quantity)}
             className="flex-1 rounded-full bg-action-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-action-600"
           >
-            Agregar al carrito
+            {t("addToCart")}
           </button>
         </div>
       </div>

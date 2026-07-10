@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
+import { useLanguage } from "@/lib/language-context";
 import type { Product } from "@/types/product";
 
 export function AddToCartButton({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const { t } = useLanguage();
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -21,7 +23,7 @@ export function AddToCartButton({ product }: { product: Product }) {
         onClick={() => addItem(product, quantity)}
         className="rounded-full bg-action-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-600"
       >
-        Agregar al carrito
+        {t("addToCart")}
       </button>
     </div>
   );

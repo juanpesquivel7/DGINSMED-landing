@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart-context";
+import { useLanguage } from "@/lib/language-context";
 import type { EnviaAddress, EnviaRate } from "@/lib/envia";
 import { AR_PROVINCES } from "@/lib/ar-provinces";
 
@@ -19,6 +20,7 @@ const emptyAddress: EnviaAddress = {
 
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart();
+  const { t } = useLanguage();
   const router = useRouter();
   const [address, setAddress] = useState<EnviaAddress>(emptyAddress);
   const [rates, setRates] = useState<EnviaRate[] | null>(null);
@@ -75,12 +77,12 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-        <p className="text-foreground/70">Tu carrito está vacío.</p>
+        <p className="text-foreground/70">{t("checkoutEmptyCart")}</p>
         <button
           onClick={() => router.push("/productos")}
           className="mt-4 rounded-full bg-action-500 px-6 py-3 text-sm font-semibold text-white"
         >
-          Ver productos
+          {t("checkoutViewProducts")}
         </button>
       </div>
     );
@@ -89,39 +91,39 @@ export default function CheckoutPage() {
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr]">
       <div className="flex flex-col gap-6">
-        <h1 className="text-2xl font-semibold text-foreground">Checkout</h1>
+        <h1 className="text-2xl font-semibold text-foreground">{t("checkoutTitle")}</h1>
 
         <div className="grid gap-3 rounded-2xl border border-border p-6">
           <h2 className="text-sm font-semibold text-foreground/80">
-            Dirección de envío
+            {t("checkoutShippingAddress")}
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             <input
-              placeholder="Nombre completo"
+              placeholder={t("checkoutFullName")}
               value={address.name}
               onChange={(e) => handleAddressChange("name", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40 sm:col-span-2"
             />
             <input
-              placeholder="Teléfono"
+              placeholder={t("checkoutPhone")}
               value={address.phone}
               onChange={(e) => handleAddressChange("phone", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40"
             />
             <input
-              placeholder="Correo (opcional)"
+              placeholder={t("checkoutEmailOptional")}
               value={address.email}
               onChange={(e) => handleAddressChange("email", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40"
             />
             <input
-              placeholder="Calle y número"
+              placeholder={t("checkoutStreet")}
               value={address.street}
               onChange={(e) => handleAddressChange("street", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40 sm:col-span-2"
             />
             <input
-              placeholder="Ciudad"
+              placeholder={t("checkoutCity")}
               value={address.city}
               onChange={(e) => handleAddressChange("city", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40"
@@ -131,7 +133,7 @@ export default function CheckoutPage() {
               onChange={(e) => handleAddressChange("state", e.target.value)}
               className="rounded-lg border border-border bg-navy-900 px-3 py-2 text-sm text-foreground"
             >
-              <option value="">Provincia</option>
+              <option value="">{t("checkoutProvince")}</option>
               {AR_PROVINCES.map((p) => (
                 <option key={p.code} value={p.code}>
                   {p.name}
@@ -139,7 +141,7 @@ export default function CheckoutPage() {
               ))}
             </select>
             <input
-              placeholder="Código postal"
+              placeholder={t("checkoutPostalCode")}
               value={address.postalCode}
               onChange={(e) =>
                 handleAddressChange("postalCode", e.target.value)
@@ -152,18 +154,18 @@ export default function CheckoutPage() {
             disabled={loadingRates}
             className="mt-2 w-fit rounded-full bg-action-500 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-action-600 disabled:opacity-50"
           >
-            {loadingRates ? "Calculando..." : "Calcular envío"}
+            {loadingRates ? t("checkoutCalculating") : t("checkoutCalculateShipping")}
           </button>
         </div>
 
         {rates && (
           <div className="rounded-2xl border border-border p-6">
             <h2 className="mb-3 text-sm font-semibold text-foreground/80">
-              Opciones de envío
+              {t("checkoutShippingOptions")}
             </h2>
             {rates.length === 0 ? (
               <p className="text-sm text-foreground/60">
-                Envia.com no devolvió tarifas disponibles para este destino.
+                {t("checkoutNoCoverage")}
               </p>
             ) : (
               <ul className="flex flex-col gap-2">
@@ -200,7 +202,7 @@ export default function CheckoutPage() {
 
       <div className="h-fit rounded-2xl border border-border p-6">
         <h2 className="mb-4 text-sm font-semibold text-foreground/80">
-          Resumen del pedido
+          {t("checkoutOrderSummary")}
         </h2>
         <ul className="mb-4 flex flex-col gap-2 text-sm">
           {items.map((item) => (
@@ -218,19 +220,19 @@ export default function CheckoutPage() {
           ))}
         </ul>
         <div className="flex justify-between border-t border-border pt-3 text-sm">
-          <span>Subtotal</span>
+          <span>{t("cartSubtotal")}</span>
           <span>${subtotal.toLocaleString("es-AR")} ARS</span>
         </div>
         <div className="flex justify-between pt-1 text-sm">
-          <span>Envío</span>
+          <span>{t("checkoutShipping")}</span>
           <span>
             {selectedRate
               ? `$${Number(selectedRate.totalPrice).toLocaleString("es-AR")} ARS`
-              : "Por calcular"}
+              : t("checkoutToCalculate")}
           </span>
         </div>
         <div className="mt-2 flex justify-between border-t border-border pt-3 text-base font-semibold">
-          <span>Total</span>
+          <span>{t("checkoutTotal")}</span>
           <span>
             $
             {(
@@ -244,7 +246,7 @@ export default function CheckoutPage() {
           disabled={!selectedRate || loadingPayment}
           className="mt-6 w-full rounded-full bg-action-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-action-600 disabled:opacity-50"
         >
-          {loadingPayment ? "Redirigiendo..." : "Pagar con Mercado Pago"}
+          {loadingPayment ? t("checkoutRedirecting") : t("checkoutPayWithMP")}
         </button>
       </div>
     </div>

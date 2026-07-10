@@ -8,16 +8,22 @@ export interface ProductDimensions {
   lengthUnit: LengthUnit;
 }
 
-export type ApplicatorType = "Automático" | "Semi-automático";
+export type ApplicatorType = "automatic" | "semi-automatic";
+
+export interface LocalizedText {
+  es: string;
+  en: string;
+  pt: string;
+}
 
 export interface Product {
   slug: string;
   name: string;
-  description: string;
+  description: LocalizedText;
   applicatorType: ApplicatorType;
-  syringeType: string;
-  treatments: string;
-  features: string[];
+  syringeType: LocalizedText;
+  treatments: LocalizedText;
+  features: LocalizedText[];
   price: number;
   originalPrice?: number;
   currency: "ARS";
