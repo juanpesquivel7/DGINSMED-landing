@@ -130,7 +130,7 @@ export const products: Product[] = [
     price: 36000,
     originalPrice: 49000,
     currency: "ARS",
-    image: "/products/pen-white-teal.webp",
+    image: "/products/dg-ject-iii-final.png",
     stock: 40,
     ...BASE_WEIGHT,
     dimensions: BASE_DIMENSIONS,
