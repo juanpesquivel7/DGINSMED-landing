@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  /* Primitive: navy scale (brand background) */
+  --color-navy-950: #070b24;
+  --color-navy-900: #0c1230;
+  --color-navy-800: #141c47;
+  --color-navy-700: #1e2a5e;
+
+  /* Primitive: brand green scale (headlines, accents, selected states) */
+  --color-brand-950: #04150c;
+  --color-brand-700: #0f7a45;
+  --color-brand-500: #22c55e;
+  --color-brand-400: #4ade80;
+  --color-brand-100: #d3f8df;
+  --color-brand-50: #eafcf1;
+
+  /* Primitive: action blue scale (primary buttons, cart) — from the real logo mark */
+  --color-action-600: #1e6fbe;
+  --color-action-500: #2f8fe0;
+  --color-action-400: #5aa8e8;
+
+  /* Semantic tokens */
+  --background: var(--color-navy-950);
+  --foreground: #f2f4fb;
+  --color-surface: var(--color-navy-900);
+  --color-card: var(--color-navy-900);
+  --color-card-foreground: #f2f4fb;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy-950: var(--color-navy-950);
+  --color-navy-900: var(--color-navy-900);
+  --color-navy-800: var(--color-navy-800);
+  --color-navy-700: var(--color-navy-700);
+  --color-brand-950: var(--color-brand-950);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-50: var(--color-brand-50);
+  --color-action-600: var(--color-action-600);
+  --color-action-500: var(--color-action-500);
+  --color-action-400: var(--color-action-400);
+  --color-surface: var(--color-surface);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-border: var(--color-border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
