@@ -64,7 +64,12 @@ export async function POST(request: NextRequest) {
             failure: `${siteUrl}/checkout`,
             pending: `${siteUrl}/checkout`,
           },
-          ...(isLocalUrl ? {} : { auto_return: "approved" }),
+          ...(isLocalUrl
+            ? {}
+            : {
+                auto_return: "approved",
+                notification_url: `${siteUrl}/api/webhooks/mercadopago`,
+              }),
         }),
       }
     );
