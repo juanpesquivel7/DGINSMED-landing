@@ -80,6 +80,7 @@ const es = {
   productSyringeType: "Tipo de jeringa",
   productTreatments: "Tratamientos y usos relevantes",
   productFeatures: "Características y detalles técnicos",
+  productHowToUse: "Video instructivo: cómo usar el autoinyector",
 
   whatsappAria: "Escribinos por WhatsApp",
 
@@ -166,6 +167,7 @@ const en: typeof es = {
   productSyringeType: "Syringe type",
   productTreatments: "Treatments and relevant uses",
   productFeatures: "Features and technical details",
+  productHowToUse: "Instructional video: how to use the auto-injector",
 
   whatsappAria: "Message us on WhatsApp",
 
@@ -253,6 +255,7 @@ const pt: typeof es = {
   productSyringeType: "Tipo de seringa",
   productTreatments: "Tratamentos e usos relevantes",
   productFeatures: "Características e detalhes técnicos",
+  productHowToUse: "Vídeo instrutivo: como usar o autoinjetor",
 
   whatsappAria: "Fale conosco pelo WhatsApp",
 

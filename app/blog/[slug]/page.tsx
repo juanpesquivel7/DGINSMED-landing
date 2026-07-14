@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, getArticleBySlug } from "@/data/articles";
 import { getProductBySlug } from "@/data/products";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -76,6 +77,15 @@ export default async function ArticlePage({
           </section>
         ))}
       </div>
+
+      {article.videoId && (
+        <div className="mt-10">
+          <h2 className="mb-3 text-xl font-semibold text-brand-400">
+            Video instructivo
+          </h2>
+          <YouTubeEmbed videoId={article.videoId} title={article.title} />
+        </div>
+      )}
 
       <p className="mt-10 rounded-xl border border-border bg-navy-900 p-4 text-xs text-foreground/50">
         {article.disclaimer}

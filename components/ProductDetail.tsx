@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { Product } from "@/types/product";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { useLanguage } from "@/lib/language-context";
 
 export function ProductDetail({ product }: { product: Product }) {
@@ -69,6 +70,16 @@ export function ProductDetail({ product }: { product: Product }) {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div>
+            <h2 className="mb-2 text-sm font-semibold text-foreground">
+              {t("productHowToUse")}
+            </h2>
+            <YouTubeEmbed
+              videoId="WS8UbD8eals"
+              title={t("productHowToUse")}
+            />
           </div>
 
           <p className="text-xs text-foreground/40">

@@ -15,6 +15,7 @@ export interface Article {
   intro: string;
   sections: ArticleSection[];
   disclaimer: string;
+  videoId?: string;
 }
 
 // Contenido SEO informativo sobre autoinyección. Solo en español (mercado
@@ -199,6 +200,7 @@ export const articles: Article[] = [
       "Si tenés un tratamiento de aplicación frecuente, la herramienta que usás para aplicarlo importa tanto como la medicación. Comparamos autoinyectores y jeringas tradicionales.",
     publishedAt: "2026-07-14",
     readingTime: "5 min",
+    videoId: "WS8UbD8eals",
     relatedProductSlugs: [
       "dg-ject-i-semi-automatico-1ml",
       "dg-ject-ii-automatico-1ml",
