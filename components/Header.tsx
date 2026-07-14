@@ -36,6 +36,9 @@ export function Header() {
           <Link href="/rastreo" className="hover:text-brand-400">
             {t("navTracking")}
           </Link>
+          <Link href="/blog" className="hover:text-brand-400">
+            {t("navBlog")}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -101,6 +104,13 @@ export function Header() {
             className="rounded-lg px-2 py-2 hover:bg-white/5 hover:text-brand-400"
           >
             {t("navTracking")}
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() => setMenuOpen(false)}
+            className="rounded-lg px-2 py-2 hover:bg-white/5 hover:text-brand-400"
+          >
+            {t("navBlog")}
           </Link>
           <div className="mt-2 flex items-center gap-1">
             {LANGUAGES.map((l) => (

@@ -4,6 +4,7 @@ const es = {
   navHome: "Inicio",
   navProducts: "Productos",
   navTracking: "Rastreo de pedido",
+  navBlog: "Blog",
   cart: "Carrito",
 
   heroTitle1: "Un Paso. Sin Stress.",
@@ -90,6 +91,7 @@ const en: typeof es = {
   navHome: "Home",
   navProducts: "Products",
   navTracking: "Track order",
+  navBlog: "Blog",
   cart: "Cart",
 
   heroTitle1: "One Step. No Stress.",
@@ -175,6 +177,7 @@ const pt: typeof es = {
   navHome: "Início",
   navProducts: "Produtos",
   navTracking: "Rastreio de pedido",
+  navBlog: "Blog",
   cart: "Carrinho",
 
   heroTitle1: "Um Passo. Sem Estresse.",
