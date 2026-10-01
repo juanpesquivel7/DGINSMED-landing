@@ -47,11 +47,6 @@ export function Footer() {
               <br />
               Legajo PM-2035-1
             </p>
-            <p className="mt-2">
-              <span className="font-medium text-foreground">{t("footerDirectora")}</span>
-              <br />
-              Bioingeniera Andrea Cattena Mat. N° ICIE 2-3395-1
-            </p>
           </div>
         </div>
         <p className="mt-8 border-t border-border pt-6 text-xs text-foreground/50">

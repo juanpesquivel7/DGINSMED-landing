@@ -26,7 +26,6 @@ const es = {
   footerAnmat: "ANMAT",
   footerHabilitacion: "Habilitación",
   footerRegistro: "Registro de Producto",
-  footerDirectora: "Directora Técnica",
   footerRights: "Todos los derechos reservados.",
 
   productsTitle: "Nuestros Productos",
@@ -114,7 +113,6 @@ const en: typeof es = {
   footerAnmat: "ANMAT",
   footerHabilitacion: "Authorization",
   footerRegistro: "Product Registration",
-  footerDirectora: "Technical Director",
   footerRights: "All rights reserved.",
 
   productsTitle: "Our Products",
@@ -201,7 +199,6 @@ const pt: typeof es = {
   footerAnmat: "ANMAT",
   footerHabilitacion: "Habilitação",
   footerRegistro: "Registro de Produto",
-  footerDirectora: "Diretora Técnica",
   footerRights: "Todos os direitos reservados.",
 
   productsTitle: "Nossos Produtos",
