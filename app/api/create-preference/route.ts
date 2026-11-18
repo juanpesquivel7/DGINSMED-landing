@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
 
     // Update order with preference ID
     const { supabase } = await import("@/lib/supabase");
-    await supabase
+    await supabase()
       .from("orders")
       .update({ mp_preference_id: preference.id })
       .eq("id", order.id);

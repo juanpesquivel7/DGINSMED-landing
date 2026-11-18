@@ -1,15 +1,24 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { Order } from "@/types";
 
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
+let _supabase: SupabaseClient | null = null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    const url = process.env.SUPABASE_URL;
+    const key = process.env.SUPABASE_ANON_KEY;
+    if (!url || !key) {
+      throw new Error("SUPABASE_URL and SUPABASE_ANON_KEY must be set.");
+    }
+    _supabase = createClient(url, key);
+  }
+  return _supabase;
+}
 
 export async function createOrder(
   orderData: Omit<Order, "id" | "created_at">
 ): Promise<Order> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("orders")
     .insert([orderData])
     .select()
@@ -27,7 +36,7 @@ export async function updateOrderStatus(
   const updateData: Partial<Order> = { status };
   if (mpPaymentId) updateData.mp_payment_id = mpPaymentId;
 
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from("orders")
     .update(updateData)
     .eq("id", orderId);
@@ -36,7 +45,7 @@ export async function updateOrderStatus(
 }
 
 export async function getOrderById(id: string): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("orders")
     .select("*")
     .eq("id", id)
@@ -47,7 +56,7 @@ export async function getOrderById(id: string): Promise<Order | null> {
 }
 
 export async function getAllOrders(): Promise<Order[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("orders")
     .select("*")
     .order("created_at", { ascending: false });
@@ -59,7 +68,7 @@ export async function getAllOrders(): Promise<Order[]> {
 export async function getOrderByMpPreferenceId(
   preferenceId: string
 ): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("orders")
     .select("*")
     .eq("mp_preference_id", preferenceId)
@@ -68,3 +77,6 @@ export async function getOrderByMpPreferenceId(
   if (error) return null;
   return data;
 }
+
+// Named export for direct access when needed
+export { getSupabase as supabase };

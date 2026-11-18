@@ -2,7 +2,11 @@ import { Resend } from "resend";
 import { Order } from "@/types";
 import { formatPrice, formatDate, generateOrderNumber } from "@/lib/utils";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend(): Resend {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY must be set.");
+  return new Resend(key);
+}
 
 const STORE_NAME = "TuTienda";
 const FROM_EMAIL = "ventas@tutienda.com.ar";
@@ -156,7 +160,7 @@ export async function sendOrderConfirmationEmail(order: Order): Promise<void> {
     </html>
   `;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: `${STORE_NAME} <${FROM_EMAIL}>`,
     to: order.customer_email,
     subject: `¡Tu pedido ${orderNumber} fue confirmado! ✅`,
