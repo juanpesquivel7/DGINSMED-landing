@@ -20,7 +20,7 @@ export const products: Product[] = [
     - Soporte ajustable en altura e inclinación
 
     **Ideal para:** Gaming competitivo, entretenimiento y trabajo creativo.`,
-    price: 215000,
+    price: 46000,
     images: [
       "https://placehold.co/800x600/1a2744/ffffff?text=Monitor+Gaming+27",
       "https://placehold.co/800x600/1a2744/ffffff?text=Monitor+Vista+Lateral",
@@ -55,7 +55,7 @@ export const products: Product[] = [
     - Compatible con Windows y Mac
 
     **Perfecto para:** Gaming, programación y uso diario.`,
-    price: 89000,
+    price: 57000,
     images: [
       "https://placehold.co/800x600/1a2744/ffffff?text=Teclado+Mecanico+RGB",
       "https://placehold.co/800x600/1a2744/ffffff?text=Teclado+Detalle",
@@ -93,7 +93,7 @@ export const products: Product[] = [
     - Receptor USB de 2.4GHz incluido
 
     **Ideal para:** Gaming competitivo y uso diario.`,
-    price: 67500,
+    price: 49000,
     images: [
       "https://placehold.co/800x600/1a2744/ffffff?text=Mouse+Gaming+Pro",
       "https://placehold.co/800x600/1a2744/ffffff?text=Mouse+Lateral",
@@ -128,7 +128,7 @@ export const products: Product[] = [
     - Cable trenzado de 1.5m con splitter incluido
 
     **Perfecto para:** Gaming, streaming y videoconferencias.`,
-    price: 54000,
+    price: 57000,
     images: [
       "https://placehold.co/800x600/1a2744/ffffff?text=Auriculares+Gaming",
       "https://placehold.co/800x600/1a2744/ffffff?text=Auriculares+Detalle",
@@ -163,7 +163,7 @@ export const products: Product[] = [
     - Altura ajustable: 42-52cm
 
     **Ideal para:** Gamers, diseñadores y trabajo desde casa.`,
-    price: 185000,
+    price: 57000,
     images: [
       "https://placehold.co/800x600/1a2744/ffffff?text=Silla+Gamer+Pro",
       "https://placehold.co/800x600/1a2744/ffffff?text=Silla+Lateral",
